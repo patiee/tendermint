@@ -9,10 +9,17 @@ require (
 	github.com/adlio/schema v1.3.3
 	github.com/btcsuite/btcd v0.22.1
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
+<<<<<<< HEAD
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/facebookgo/ensure v0.0.0-20160127193407-b4ab57deab51 // indirect
 	github.com/facebookgo/stack v0.0.0-20160209184415-751773369052 // indirect
 	github.com/facebookgo/subset v0.0.0-20150612182917-8dac2c3c4870 // indirect
+=======
+	github.com/bufbuild/buf v1.9.0
+	github.com/creachadair/taskgroup v0.3.2
+	github.com/figment-networks/extractor-cosmos v0.1.0
+	github.com/figment-networks/proto-cosmos v0.1.0
+>>>>>>> ab455fc3f (Add Cosmos firehose extractor)
 	github.com/fortytw2/leaktest v1.3.0
 	github.com/go-kit/kit v0.12.0
 	github.com/go-kit/log v0.2.1
@@ -262,3 +269,5 @@ require (
 	mvdan.cc/lint v0.0.0-20170908181259-adc824a0674b // indirect
 	mvdan.cc/unparam v0.0.0-20220706161116-678bad134442 // indirect
 )
+
+require github.com/cosmos/cosmos-proto v1.0.0-alpha7 // indirect
