@@ -20,6 +20,7 @@ import (
 	cfg "github.com/tendermint/tendermint/config"
 	cs "github.com/tendermint/tendermint/consensus"
 	"github.com/tendermint/tendermint/crypto"
+	"github.com/tendermint/tendermint/deepmind"
 	"github.com/tendermint/tendermint/evidence"
 
 	tmjson "github.com/tendermint/tendermint/libs/json"
@@ -747,6 +748,12 @@ func NewNode(config *cfg.Config,
 		return nil, err
 	}
 
+	// Initialize data extraction
+	if config.Extractor.Enabled {
+		deepmind.Initialize(config.Extractor)
+		logger.Info("Initialized extractor module", "output", config.Extractor.OutputFile)
+	}
+
 	// If an address is provided, listen on the socket for a connection from an
 	// external signing process.
 	if config.PrivValidatorListenAddr != "" {
@@ -1053,6 +1060,10 @@ func (n *Node) OnStop() {
 		if err := n.stateStore.Close(); err != nil {
 			n.Logger.Error("problem closing statestore", "err", err)
 		}
+	}
+	if deepmind.IsEnabled() {
+		n.Logger.Info("waiting for last block finalization", "module", "deepmind")
+		deepmind.Shutdown(context.Background())
 	}
 }
 
